@@ -8,7 +8,7 @@ import BoardYear from "@/components/board/BoardYear.svelte";
 const boardMembers = await Astro.glob<BoardMemberFrontmatter>(
   "@content/board/**/*.md"
 );
-const boardMemberImages = await Astro.glob("@content/board/**/*.png");
+const boardMemberImages = await Astro.glob("@content/board/**/*.{svg,png}");
 
 const board = getBoardCache(boardMembers, boardMemberImages);
 ---
@@ -32,3 +32,9 @@ const board = getBoardCache(boardMembers, boardMemberImages);
     </main>
   </body>
 </html>
+
+<style>
+  main {
+    padding: 0 16px;
+  }
+</style>

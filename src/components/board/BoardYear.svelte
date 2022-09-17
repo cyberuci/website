@@ -8,7 +8,27 @@
 
 <article>
   <h1>{year}</h1>
-  {#each boardMembers as boardMember}
-    <BoardMember {boardMember} />
-  {/each}
+  <div class="board-members">
+    {#each boardMembers as boardMember}
+      <BoardMember {boardMember} />
+    {/each}
+  </div>
 </article>
+
+<style>
+  article {
+    margin-bottom: 48px;
+  }
+
+  h1 {
+    margin: 24px 0;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  .board-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+    gap: 32px 16px;
+  }
+</style>
