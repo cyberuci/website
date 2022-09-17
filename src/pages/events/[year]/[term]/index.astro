@@ -1,0 +1,48 @@
+---
+import type { EventFrontmatter } from "club-org-utils";
+import { getEventCache, getCapitalizedTerm } from "@/cache/events";
+import EventListTerm from "@/components/events/EventListTerm.svelte";
+
+export const getStaticPaths = async () => {
+  const eventsGlob = await Astro.glob<EventFrontmatter>(
+    "@content/events/**/*.md"
+  );
+  const events = getEventCache(eventsGlob);
+
+  return [...events]
+    .map(([year, eventListYear]) =>
+      [...eventListYear].map(([term]) => ({
+        params: { year: year.toString(), term: term.toLowerCase() },
+      }))
+    )
+    .flat();
+};
+
+const { year, term } = Astro.params;
+const capitalizedTerm = getCapitalizedTerm(String(term))!;
+
+const eventsGlob = await Astro.glob<EventFrontmatter>(
+  "@content/events/**/*.md"
+);
+const events = getEventCache(eventsGlob);
+
+const eventListYear = events.get(Number(year))!;
+const eventListTerm = eventListYear.get(capitalizedTerm)!;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>
+      Events {capitalizedTerm}
+      {year} — {import.meta.env.PUBLIC_NAME}
+    </title>
+  </head>
+
+  <body>
+    <main>
+      <EventListTerm term={capitalizedTerm} eventListTerm={eventListTerm} />
+    </main>
+  </body>
+</html>

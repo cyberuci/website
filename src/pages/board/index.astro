@@ -1,0 +1,30 @@
+---
+import type { BoardMemberFrontmatter } from "club-org-utils";
+import { getBoardCache } from "@/cache/board";
+import BoardYear from "@/components/board/BoardYear.svelte";
+
+const boardMembers = await Astro.glob<BoardMemberFrontmatter>(
+  "@content/board/**/*.md"
+);
+const boardMemberImages = await Astro.glob("@content/board/**/*.png");
+
+const board = getBoardCache(boardMembers, boardMemberImages);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Board — {import.meta.env.PUBLIC_NAME}</title>
+  </head>
+
+  <body>
+    <main>
+      {
+        [...board].map(([year, boardMembers]) => (
+          <BoardYear year={year} boardMembers={boardMembers} />
+        ))
+      }
+    </main>
+  </body>
+</html>

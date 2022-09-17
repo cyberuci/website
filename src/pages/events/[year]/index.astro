@@ -1,0 +1,39 @@
+---
+import type { EventFrontmatter } from "club-org-utils";
+import { getEventCache } from "@/cache/events";
+import EventListYear from "@/components/events/EventListYear.svelte";
+
+export const getStaticPaths = async () => {
+  const eventsGlob = await Astro.glob<EventFrontmatter>(
+    "@content/events/**/*.md"
+  );
+  const events = getEventCache(eventsGlob);
+
+  return [...events.keys()].map((year) => ({
+    params: { year: year.toString() },
+  }));
+};
+
+const { year } = Astro.params;
+
+const eventsGlob = await Astro.glob<EventFrontmatter>(
+  "@content/events/**/*.md"
+);
+const events = getEventCache(eventsGlob);
+
+const eventListYear = events.get(Number(year))!;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Events {year} — {import.meta.env.PUBLIC_NAME}</title>
+  </head>
+
+  <body>
+    <main>
+      <EventListYear year={Number(year)} eventListYear={eventListYear} />
+    </main>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+---
+import type { SponsorFrontmatter } from "club-org-utils";
+import { getSponsorCache } from "@/cache/sponsors";
+import SponsorYear from "@/components/sponsors/SponsorYear.svelte";
+
+const sponsors = await Astro.glob<SponsorFrontmatter>(
+  "@content/sponsors/**/*.md"
+);
+const sponsorLogos = await Astro.glob("@content/sponsors/**/*.png");
+
+const sponsor = getSponsorCache(sponsors, sponsorLogos);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Sponsors — {import.meta.env.PUBLIC_NAME}</title>
+  </head>
+
+  <body>
+    <main>
+      {
+        [...sponsor].map(([year, sponsors]) => (
+          <SponsorYear year={year} sponsors={sponsors} />
+        ))
+      }
+    </main>
+  </body>
+</html>
