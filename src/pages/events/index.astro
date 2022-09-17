@@ -1,4 +1,5 @@
 ---
+import "../styles/colors.scss";
 import type { EventFrontmatter } from "club-org-utils";
 import { getEventCache } from "@/cache/events";
 import EventListYear from "@/components/events/EventListYear.svelte";
@@ -16,7 +17,8 @@ const events = getEventCache(eventsGlob);
     <title>Events — {import.meta.env.PUBLIC_NAME}</title>
   </head>
 
-  <body>
+  <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
+  <body class="dark-theme">
     <main>
       {
         [...events].map(([year, eventListYear]) => (

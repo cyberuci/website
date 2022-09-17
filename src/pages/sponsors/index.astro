@@ -1,4 +1,5 @@
 ---
+import "../styles/colors.scss";
 import type { SponsorFrontmatter } from "club-org-utils";
 import { getSponsorCache } from "@/cache/sponsors";
 import SponsorYear from "@/components/sponsors/SponsorYear.svelte";
@@ -18,7 +19,8 @@ const sponsor = getSponsorCache(sponsors, sponsorLogos);
     <title>Sponsors — {import.meta.env.PUBLIC_NAME}</title>
   </head>
 
-  <body>
+  <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
+  <body class="dark-theme">
     <main>
       {
         [...sponsor].map(([year, sponsors]) => (

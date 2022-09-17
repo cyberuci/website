@@ -1,4 +1,5 @@
 ---
+import "../styles/colors.scss";
 import type { EventFrontmatter } from "club-org-utils";
 import { getEventCache, getCapitalizedTerm } from "@/cache/events";
 import EventListTerm from "@/components/events/EventListTerm.svelte";
@@ -40,7 +41,8 @@ const eventListTerm = eventListYear.get(capitalizedTerm)!;
     </title>
   </head>
 
-  <body>
+  <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
+  <body class="dark-theme">
     <main>
       <EventListTerm term={capitalizedTerm} eventListTerm={eventListTerm} />
     </main>
