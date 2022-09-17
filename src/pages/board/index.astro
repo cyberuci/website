@@ -2,6 +2,7 @@
 import "@/styles/colors.scss";
 import type { BoardMemberFrontmatter } from "club-org-utils";
 import { getBoardCache } from "@/cache/board";
+import Header from "@/components/layout/Header.svelte";
 import BoardYear from "@/components/board/BoardYear.svelte";
 
 const boardMembers = await Astro.glob<BoardMemberFrontmatter>(
@@ -21,6 +22,7 @@ const board = getBoardCache(boardMembers, boardMemberImages);
 
   <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
   <body class="dark-theme">
+    <Header pathname={Astro.url.pathname} />
     <main>
       {
         [...board].map(([year, boardMembers]) => (

@@ -1,5 +1,6 @@
 ---
 import "../styles/colors.scss";
+import Header from "@/components/layout/Header.svelte";
 ---
 
 <html lang="en">
@@ -11,6 +12,7 @@ import "../styles/colors.scss";
 
   <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
   <body class="dark-theme">
+    <Header pathname={Astro.url.pathname} />
     <h1>Astro</h1>
   </body>
 </html>

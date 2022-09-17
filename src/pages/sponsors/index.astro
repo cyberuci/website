@@ -2,6 +2,7 @@
 import "../styles/colors.scss";
 import type { SponsorFrontmatter } from "club-org-utils";
 import { getSponsorCache } from "@/cache/sponsors";
+import Header from "@/components/layout/Header.svelte";
 import SponsorYear from "@/components/sponsors/SponsorYear.svelte";
 
 const sponsors = await Astro.glob<SponsorFrontmatter>(
@@ -21,6 +22,7 @@ const sponsor = getSponsorCache(sponsors, sponsorLogos);
 
   <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
   <body class="dark-theme">
+    <Header pathname={Astro.url.pathname} />
     <main>
       {
         [...sponsor].map(([year, sponsors]) => (

@@ -2,6 +2,7 @@
 import "../styles/colors.scss";
 import type { EventFrontmatter } from "club-org-utils";
 import { getEventCache } from "@/cache/events";
+import Header from "@/components/layout/Header.svelte";
 import EventListYear from "@/components/events/EventListYear.svelte";
 
 export const getStaticPaths = async () => {
@@ -34,6 +35,7 @@ const eventListYear = events.get(Number(year))!;
 
   <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
   <body class="dark-theme">
+    <Header pathname={Astro.url.pathname} />
     <main>
       <EventListYear year={Number(year)} eventListYear={eventListYear} />
     </main>
