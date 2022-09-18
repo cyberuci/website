@@ -46,7 +46,16 @@ const eventListTerm = eventListYear.get(capitalizedTerm)!;
   <body class="dark-theme">
     <Header pathname={Astro.url.pathname} />
     <main>
-      <EventListTerm term={capitalizedTerm} eventListTerm={eventListTerm} />
+      <EventListTerm
+        year={Number(year)}
+        term={capitalizedTerm}
+        eventListTerm={eventListTerm}
+      />
     </main>
+    <style>
+      main {
+        padding: 0 16px;
+      }
+    </style>
   </body>
 </html>
