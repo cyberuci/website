@@ -19,6 +19,8 @@
 
 <style lang="scss">
   header {
+    position: sticky;
+    top: 0;
     display: flex;
     align-items: center;
     gap: 16px;
