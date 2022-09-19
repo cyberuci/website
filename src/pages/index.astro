@@ -1,46 +1,32 @@
 ---
-import "@/styles/colors.scss";
-import Header from "@/components/layout/Header.svelte";
+import Layout from "@/layouts/Layout.astro";
 import cover from "./cover.jpg";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{import.meta.env.PUBLIC_NAME}</title>
-  </head>
+<Layout>
+  <title slot="head">{import.meta.env.PUBLIC_NAME}</title>
 
-  <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
-  <body class="dark-theme">
-    <Header pathname={Astro.url.pathname} />
-    <main>
-      <h1>
-        We’re Cyber @ UCI, the club for all things cybersecurity. <br />
-        Every week, we host beginner friendly workshops, participate in competitions*,
-        and challenge ourselves with CTFs!
-      </h1>
-      <img src={cover} />
-    </main>
-    <style>
-      main {
-        padding: 0 16px;
-      }
+  <h1>
+    We’re Cyber @ UCI, the club for all things cybersecurity. <br />
+    Every week, we host beginner friendly workshops, participate in competitions*,
+    and challenge ourselves with CTFs!
+  </h1>
+  <img src={cover} />
+</Layout>
 
-      h1 {
-        font-size: 2rem;
-        font-weight: 400;
-        line-height: 130%;
-        max-width: 1024px;
-      }
+<style>
+  h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 130%;
+    max-width: 1024px;
+  }
 
-      img {
-        width: 100%;
-        height: 512px;
-        object-fit: cover;
-        object-position: 50% 40%;
-        border-radius: 16px;
-      }
-    </style>
-  </body>
-</html>
+  img {
+    width: 100%;
+    height: 512px;
+    object-fit: cover;
+    object-position: 50% 40%;
+    border-radius: 16px;
+  }
+</style>

@@ -2,7 +2,7 @@
 import "@/styles/colors.scss";
 import type { BoardMemberFrontmatter } from "club-org-utils";
 import { getBoardCache } from "@/cache/board";
-import Header from "@/components/layout/Header.svelte";
+import Layout from "@/layouts/Layout.astro";
 import BoardYear from "@/components/board/BoardYear.svelte";
 
 const boardMembers = await Astro.glob<BoardMemberFrontmatter>(
@@ -13,28 +13,12 @@ const boardMemberImages = await Astro.glob("@content/board/**/*.{svg,png}");
 const board = getBoardCache(boardMembers, boardMemberImages);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Board — {import.meta.env.PUBLIC_NAME}</title>
-  </head>
+<Layout>
+  <title slot="head">Board — {import.meta.env.PUBLIC_NAME}</title>
 
-  <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
-  <body class="dark-theme">
-    <Header pathname={Astro.url.pathname} />
-    <main>
-      {
-        [...board].map(([year, boardMembers]) => (
-          <BoardYear year={year} boardMembers={boardMembers} />
-        ))
-      }
-    </main>
-  </body>
-</html>
-
-<style>
-  main {
-    padding: 0 16px;
+  {
+    [...board].map(([year, boardMembers]) => (
+      <BoardYear year={year} boardMembers={boardMembers} />
+    ))
   }
-</style>
+</Layout>

@@ -2,7 +2,7 @@
 import "@/styles/colors.scss";
 import type { EventFrontmatter } from "club-org-utils";
 import { getEventCache, getCapitalizedTerm } from "@/cache/events";
-import Header from "@/components/layout/Header.svelte";
+import Layout from "@/layouts/Layout.astro";
 
 export const getStaticPaths = async () => {
   const eventsGlob = await Astro.glob<EventFrontmatter>(
@@ -44,38 +44,30 @@ const localeString = date.toLocaleString("en-US", {
 });
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title} — {import.meta.env.PUBLIC_NAME}</title>
-  </head>
+<Layout>
+  <title slot="head">{title} — {import.meta.env.PUBLIC_NAME}</title>
 
-  <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
-  <body class="dark-theme">
-    <Header pathname={Astro.url.pathname} />
-    <main>
-      <h1>{title}</h1>
-      <span>{localeString}</span>
-      <Content />
-    </main>
-    <style>
-      main {
-        padding: 0 16px;
-        max-width: 960px;
-      }
+  <h1>{title}</h1>
+  <span>{localeString}</span>
+  <div class="content">
+    <Content />
+  </div>
+</Layout>
 
-      h1 {
-        margin: 24px 0 8px 0;
-        font-size: 2rem;
-        font-weight: 500;
-      }
+<style>
+  h1 {
+    margin: 24px 0 8px 0;
+    font-size: 2rem;
+    font-weight: 500;
+  }
 
-      span {
-        display: block;
-        color: var(--gray11);
-        margin-bottom: 36px;
-      }
-    </style>
-  </body>
-</html>
+  span {
+    display: block;
+    color: var(--gray11);
+    margin-bottom: 36px;
+  }
+
+  .content {
+    max-width: 960px;
+  }
+</style>

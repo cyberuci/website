@@ -1,0 +1,32 @@
+---
+import "@/styles/colors.scss";
+import Header from "@/components/layout/Header.svelte";
+import Footer from "@/components/layout/Footer.svelte";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <slot name="head" />
+  </head>
+
+  <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
+  <body class="dark-theme">
+    <Header client:load pathname={Astro.url.pathname} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <style lang="scss">
+      body {
+        margin: 0;
+        padding: 0 24px;
+
+        @media (max-width: 480px) {
+          padding: 0 16px;
+        }
+      }
+    </style>
+  </body>
+</html>

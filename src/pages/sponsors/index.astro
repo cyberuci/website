@@ -2,7 +2,7 @@
 import "@/styles/colors.scss";
 import type { SponsorFrontmatter } from "club-org-utils";
 import { getSponsorCache } from "@/cache/sponsors";
-import Header from "@/components/layout/Header.svelte";
+import Layout from "@/layouts/Layout.astro";
 import SponsorYear from "@/components/sponsors/SponsorYear.svelte";
 
 const sponsors = await Astro.glob<SponsorFrontmatter>(
@@ -13,22 +13,12 @@ const sponsorLogos = await Astro.glob("@content/sponsors/**/*.png");
 const sponsor = getSponsorCache(sponsors, sponsorLogos);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Sponsors — {import.meta.env.PUBLIC_NAME}</title>
-  </head>
+<Layout>
+  <title slot="head">Sponsors — {import.meta.env.PUBLIC_NAME}</title>
 
-  <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
-  <body class="dark-theme">
-    <Header pathname={Astro.url.pathname} />
-    <main>
-      {
-        [...sponsor].map(([year, sponsors]) => (
-          <SponsorYear year={year} sponsors={sponsors} />
-        ))
-      }
-    </main>
-  </body>
-</html>
+  {
+    [...sponsor].map(([year, sponsors]) => (
+      <SponsorYear year={year} sponsors={sponsors} />
+    ))
+  }
+</Layout>

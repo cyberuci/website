@@ -2,7 +2,7 @@
 import "@/styles/colors.scss";
 import type { EventFrontmatter } from "club-org-utils";
 import { getEventCache } from "@/cache/events";
-import Header from "@/components/layout/Header.svelte";
+import Layout from "@/layouts/Layout.astro";
 import EventListYear from "@/components/events/EventListYear.svelte";
 
 export const getStaticPaths = async () => {
@@ -26,23 +26,8 @@ const events = getEventCache(eventsGlob);
 const eventListYear = events.get(Number(year))!;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Events {year} — {import.meta.env.PUBLIC_NAME}</title>
-  </head>
+<Layout>
+  <title slot="head">Events {year} — {import.meta.env.PUBLIC_NAME}</title>
 
-  <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
-  <body class="dark-theme">
-    <Header pathname={Astro.url.pathname} />
-    <main>
-      <EventListYear year={Number(year)} eventListYear={eventListYear} />
-    </main>
-    <style>
-      main {
-        padding: 0 16px;
-      }
-    </style>
-  </body>
-</html>
+  <EventListYear year={Number(year)} eventListYear={eventListYear} />
+</Layout>
