@@ -6,6 +6,10 @@
 @import "@radix-ui/colors/blueDark.css" (prefers-color-scheme: dark);
 @import "@radix-ui/colors/redDark.css" (prefers-color-scheme: dark);
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
 
