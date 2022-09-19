@@ -1,12 +1,11 @@
 {
-  "name": "template-astro-club",
+  "name": "cyberatuciwebsite",
   "version": "0.1.0",
-  "license": "Unlicense",
   "author": "Alexander Liu <humans@alexanderliu.com>",
-  "homepage": "https://git.sr.ht/~alexanderliu/template-astro-club",
+  "homepage": "https://git.sr.ht/~alexanderliu/cyberatuciwebsite",
   "repository": {
     "type": "git",
-    "url": "https://git.sr.ht/~alexanderliu/template-astro-club"
+    "url": "https://git.sr.ht/~alexanderliu/cyberatuciwebsite"
   },
   "scripts": {
     "dev": "astro dev",
