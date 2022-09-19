@@ -46,7 +46,7 @@
   }
 
   .nav {
-    display: flow;
+    display: block;
     @media (max-width: 480px) {
       display: none;
     }
@@ -55,7 +55,7 @@
   .nav-collapsible {
     display: none;
     @media (max-width: 480px) {
-      display: flow;
+      display: block;
     }
   }
 
