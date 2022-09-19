@@ -1,4 +1,6 @@
 <script lang="ts">
+  import NavNotification from "./NavNotification.svelte";
+
   export let pathname: string;
 </script>
 
@@ -8,6 +10,10 @@
   <!-- <a class:active={pathname.startsWith("/sponsors")} href="/sponsors"
     >Sponsors</a
   > -->
+  <NavNotification
+    href="https://discord.gg/kSpR9uv"
+    message="Join our Discord!"
+  />
 </nav>
 
 <style lang="scss">
