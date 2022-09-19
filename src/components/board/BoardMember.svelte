@@ -6,9 +6,11 @@
 </script>
 
 <article>
-  {#if image}
-    <img src={image} alt={name} />
-  {/if}
+  <div class="image">
+    {#if image}
+      <img src={image} alt={name} />
+    {/if}
+  </div>
   <h1>{name}</h1>
   <span> {title}</span>
   <span>{major} '{graduation}</span>
@@ -20,8 +22,12 @@
     flex-direction: column;
   }
 
-  img {
+  .image {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: var(--gray2);
     border-radius: 16px;
+    overflow: hidden;
   }
 
   h1 {
