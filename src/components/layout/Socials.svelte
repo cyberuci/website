@@ -58,6 +58,7 @@
   }
 
   a {
+    height: 25px;
     color: var(--gray12);
     background-color: var(--gray3);
     padding: 8px 16px;
