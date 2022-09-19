@@ -29,12 +29,12 @@
       class:active={pathname.startsWith("/board")}
       href="/board">Board</a
     >
-    <a
+    <!-- <a
       in:fade={{ delay: 300 }}
       out:fade
       class:active={pathname.startsWith("/sponsors")}
       href="/sponsors">Sponsors</a
-    >
+    > -->
   </nav>
 {/if}
 

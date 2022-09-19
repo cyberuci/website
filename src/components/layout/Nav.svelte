@@ -5,9 +5,9 @@
 <nav>
   <a class:active={pathname.startsWith("/events")} href="/events">Events</a>
   <a class:active={pathname.startsWith("/board")} href="/board">Board</a>
-  <a class:active={pathname.startsWith("/sponsors")} href="/sponsors"
+  <!-- <a class:active={pathname.startsWith("/sponsors")} href="/sponsors"
     >Sponsors</a
-  >
+  > -->
 </nav>
 
 <style lang="scss">
