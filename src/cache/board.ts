@@ -14,7 +14,7 @@ let boardCache: BoardList;
 
 export const getBoardCache = (
   boardMembers: MarkdownInstance<BoardMemberFrontmatter>[],
-  boardMemberImages: Record<string, any>[]
+  boardMemberImages?: Record<string, any>[]
 ) => {
   if (!boardCache) {
     boardCache = getBoard(boardMembers, titles, boardMemberImages);
