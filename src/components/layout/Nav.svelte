@@ -11,7 +11,7 @@
     >Sponsors</a
   > -->
   <NavNotification
-    href="https://discord.gg/kSpR9uv"
+    href="https://discord.gg/WjbSP2B9Ck"
     message="Join our Discord!"
   />
 </nav>

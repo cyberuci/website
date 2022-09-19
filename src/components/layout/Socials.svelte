@@ -19,7 +19,7 @@
 
 <div bind:this={element} />
 <div class="socials">
-  <a href="https://discord.gg/kSpR9uv">
+  <a href="https://discord.gg/WjbSP2B9Ck">
     <div class="icon">
       <Discord />
     </div>
