@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import path from "path";
 
 import svelte from "@astrojs/svelte";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,5 +14,6 @@ export default defineConfig({
       },
     },
   },
-  integrations: [svelte()],
+  site: "https://cyberuci.com",
+  integrations: [svelte(), sitemap()],
 });
