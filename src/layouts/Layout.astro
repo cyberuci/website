@@ -19,23 +19,22 @@ import Footer from "@/components/layout/Footer.svelte";
   </head>
 
   <!-- Permanently set dark-theme class so Radix dark scales apply when prefers-color-scheme is dark. -->
+  <body class="dark-theme">
+    <Header client:load pathname={Astro.url.pathname} />
+    <main>
+      <slot />
+    </main>
+    <Socials client:idle />
+    <Footer />
+    <style lang="scss">
+      body {
+        margin: 0;
+        padding: 0 24px;
 
-  <Header client:load pathname={Astro.url.pathname} />
-  <main>
-    <slot />
-  </main>
-  <Socials client:idle />
-  <Footer />
-  <style lang="scss">
-    body {
-      margin: 0;
-      padding: 0 24px;
-
-      @media (max-width: 480px) {
-        padding: 0 16px;
+        @media (max-width: 480px) {
+          padding: 0 16px;
+        }
       }
-    }
-  </style>
-
-
+    </style>
+  </body>
 </html>
