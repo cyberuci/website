@@ -1,6 +1,4 @@
 <script lang="ts">
-  import NavNotification from "./NavNotification.svelte";
-
   export let pathname: string;
   export let links: {
     href: string;
@@ -12,10 +10,6 @@
   {#each links as { href, label }}
     <a class:active={pathname.startsWith(href)} {href}>{label}</a>
   {/each}
-  <NavNotification
-    href="https://discord.gg/WjbSP2B9Ck"
-    message="Join our Discord!"
-  />
 </nav>
 
 <style lang="scss">
