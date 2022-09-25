@@ -2,14 +2,16 @@
   import NavNotification from "./NavNotification.svelte";
 
   export let pathname: string;
+  export let links: {
+    href: string;
+    label: string;
+  }[];
 </script>
 
 <nav>
-  <a class:active={pathname.startsWith("/events")} href="/events">Events</a>
-  <a class:active={pathname.startsWith("/board")} href="/board">Board</a>
-  <!-- <a class:active={pathname.startsWith("/sponsors")} href="/sponsors"
-    >Sponsors</a
-  > -->
+  {#each links as { href, label }}
+    <a class:active={pathname.startsWith(href)} {href}>{label}</a>
+  {/each}
   <NavNotification
     href="https://discord.gg/WjbSP2B9Ck"
     message="Join our Discord!"

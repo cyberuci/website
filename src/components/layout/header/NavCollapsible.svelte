@@ -4,6 +4,10 @@
   import X from "./X.svelte";
 
   export let pathname: string;
+  export let links: {
+    href: string;
+    label: string;
+  }[];
 
   let open = false;
 </script>
@@ -17,24 +21,16 @@
 </button>
 {#if open}
   <nav transition:slide>
-    <a
-      in:fade={{ delay: 200 }}
-      out:fade
-      class:active={pathname.startsWith("/events")}
-      href="/events">Events</a
-    >
-    <a
-      in:fade={{ delay: 250 }}
-      out:fade
-      class:active={pathname.startsWith("/board")}
-      href="/board">Board</a
-    >
-    <!-- <a
-      in:fade={{ delay: 300 }}
-      out:fade
-      class:active={pathname.startsWith("/sponsors")}
-      href="/sponsors">Sponsors</a
-    > -->
+    {#each links as { href, label }, i}
+      <a
+        in:fade={{ delay: 200 + 50 * i }}
+        out:fade
+        class:active={pathname.startsWith(href)}
+        {href}
+      >
+        {label}
+      </a>
+    {/each}
   </nav>
 {/if}
 

@@ -3,6 +3,12 @@
   import Nav from "./Nav.svelte";
   import NavCollapsible from "./NavCollapsible.svelte";
 
+  const links = [
+    { href: "/events", label: "Events" },
+    { href: "/board", label: "Board" },
+    // { href: "/sponsors", label: "Sponsors" },
+  ];
+
   export let pathname: string;
 </script>
 
@@ -11,10 +17,10 @@
     <img src={logo} alt="monochrome Cyber logo" />
   </a>
   <div class="nav">
-    <Nav {pathname} />
+    <Nav {pathname} {links} />
   </div>
   <div class="nav-collapsible">
-    <NavCollapsible {pathname} />
+    <NavCollapsible {pathname} {links} />
   </div>
 </header>
 <div class="buffer" />
