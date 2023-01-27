@@ -1,19 +1,31 @@
 <script lang="ts">
-  import type { BoardMember } from "club-org-utils";
+  import type { Person } from "@/sanity/types";
+  import { client } from "@/sanity/client";
+  import imageUrlBuilder from "@sanity/image-url";
 
-  export let boardMember: BoardMember;
-  $: ({ name, image, major, graduation, title } = boardMember);
+  const builder = imageUrlBuilder(client);
+
+  export let boardMember: {
+    title: string;
+    terms: string[];
+    person: Person;
+  };
+
+  $: ({ title, person } = boardMember);
+  $: ({ name, pronouns, image, majors, graduation } = person);
 </script>
 
 <article>
   <div class="image">
     {#if image}
-      <img src={image} alt={name} />
+      <img src={builder.image(image).url()} alt={name} />
     {/if}
   </div>
-  <h1>{name}</h1>
+  <!-- TODO: Support multiple pronouns -->
+  <h1>{name} ({pronouns[0]})</h1>
   <span> {title}</span>
-  <span>{major} '{graduation}</span>
+  <!-- TODO: Support multiple majors -->
+  <span>{majors[0]} '{graduation - 2000}</span>
 </article>
 
 <style>
@@ -28,6 +40,12 @@
     background-color: var(--gray2);
     border-radius: 16px;
     overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   h1 {

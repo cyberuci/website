@@ -1,23 +1,37 @@
 ---
-import type { BoardMemberFrontmatter } from "club-org-utils";
-import { getBoardCache } from "@/cache/board";
+import type { Person } from "@/sanity/types";
+import { client } from "@/sanity/client";
+import groq from "groq";
 import Layout from "@/layouts/Layout.astro";
 import BoardYear from "@/components/board/BoardYear.svelte";
 
-const boardMembers = await Astro.glob<BoardMemberFrontmatter>(
-  "@content/board/**/*.md"
-);
-// const boardMemberImages = await Astro.glob("@content/board/**/*.{svg,png}");
-
-const board = getBoardCache(boardMembers);
+const query = groq`
+  *[_type == "board"] | order(year desc) {
+    year,
+    members[]{
+      title,
+      terms,
+      person->
+    }
+  }
+`;
+type QueryResult = {
+  year: number;
+  members: {
+    title: string;
+    terms: string[];
+    person: Person;
+  }[];
+}[];
+const boards = await client.fetch<QueryResult>(query);
 ---
 
 <Layout>
   <title slot="head">Board — {import.meta.env.PUBLIC_NAME}</title>
 
   {
-    [...board].map(([year, boardMembers]) => (
-      <BoardYear year={year} boardMembers={boardMembers} />
+    boards.map((board) => (
+      <BoardYear year={board.year} boardMembers={board.members} />
     ))
   }
 </Layout>

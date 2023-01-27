@@ -1,9 +1,13 @@
 <script lang="ts">
-  import type { BoardMember as BoardMemberType } from "club-org-utils";
+  import type { Person } from "@/sanity/types";
   import BoardMember from "./BoardMember.svelte";
 
   export let year: number;
-  export let boardMembers: BoardMemberType[];
+  export let boardMembers: {
+    title: string;
+    terms: string[];
+    person: Person;
+  }[];
 </script>
 
 <article>
